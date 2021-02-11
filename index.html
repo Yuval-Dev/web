@@ -1,2 +1,31 @@
-a short message
-<img src="https://www.nasa.gov/images/content/53131main_voyager-disc.jpg">
+<head>
+<title>
+Recursion
+</title>
+</head>
+
+<body onload="window.origData=document.documentElement.innerHTML">
+	<h1>
+	Recursion
+	</h1>
+	<ul>
+		<li>
+			<a href="#Practical Uses"> Practical Uses </a>
+		</li>
+		<li>
+			<a href="#Origin"> Origin </a>
+		</li>
+		<li>
+			<a href="#Recursion"> Recursion </a>
+		</li>
+	</ul>
+	<h2 id="Practical Uses"> Practical Uses </h2>
+	<p> Recursion's most practical use in the field of computer science is to break down a task that is way to big to be done (in many cases, this could be due to the task having a time complexity that scales up too fast or the task simply being too complex to be done iteratively or explicitly) into many smaller tasks that are easier to be done. An example of this is with some mathematical functions (from which recursion originated. <a href="#Origin">more on that</a>) in which: in order to find the next element, you must do some arithmetic onto the previous element(s). As an example: <p align="center"><img align="center" src="https://i.upmath.me/svg/Q_%7Bn%7D%3DQ_%7Bn-1%7D%2BQ_%7Bn-2%7D" alt="Q_{n}=Q_{n-1}+Q_{n-2}" /></p> is a recursive function in which in order to find each new element, you must sum the previous two (this is known as the fibonachi sequence)
+	</p>
+	<h2 id="Origin"> Origin </h2>
+	<p>
+	Recursion originates from Math, dating back to the 1888 with Richard Dedekind used recursion in some functions that he needed for a formal analysis of the concept of natural numbers. Since then, it has been used by mathematics, computer science, and biology numerous times. Here is a good book describing recursion as well as the history of it: <a href= "https://www.amazon.com/History-Recursive-Functions-Computability-Turing/dp/0983700400">An Early History of Recursive Functions and Computability from Godel to Turing (Amazon)</a>
+	</p>
+	<h2 "id="Recursion"> Recursion</h2>
+	<div style="padding: 10px;border: 5px solid gray;" height="100%" width="100%"><a href="#" onclick="this.parentElement.innerHTML=window.origData;">Click Me</a></div>
+</body>
