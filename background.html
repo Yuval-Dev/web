@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Background Info</h1>
+<p>Assuming that you already know the basic functions of a computer and how it works, we will make a closer analysis on the CPU itself. For our bootloader program, we will be loaded onto the cpu in <a href="https://wiki.osdev.org/Real_Mode">16 bit real mode</a>. Which means that we will only have access to 16 bit <a href="https://wiki.osdev.org/CPU_Registers_x86">Registers</a> and 16 bit <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">Instructions</a>. So here are the 16 bit registers that are usable in this mode: </p>
+
+<h2> General Purpose</h2>
+<p> The registers AX, BX, CX, and DX all fall under the category of <i>general purpose registers</i> which means that the cpu will do nothing with these registers unless we tell it to do so. There are some conventions for these registers: AX is typically called the Accumulator, and is used in arithmetic operations, CX is a counter register that is typically used to keep track of where we are in a <a href="https://en.wikipedia.org/wiki/For_loop">Loop</a>, DX is called the Data Register, and is used to typically store data from/for an input/output, as well as used implicitly in many operations by the cpu to store/send from to the computer's outputs (devices like mouses, monitors etc), and finally, the Base Register (BX) is used as a pointer to data, typically for read operations.
+
+<h2> Special </h2>
+<p> The registers SP, BP, SI, and DI all have a specific purpose. The SP register is the <a href="https://en.wikipedia.org/wiki/Stack">stack</a> pointer, pointing to the top of the stack, the Stack Base Pointer is typically used by more complex programs (we won't use it here because our program doesn't meet this level, but we may still use it for another purpose like storing other data) to store the base address of a stack frame. The Source Index register (SI) is typically used as a pointer for stream/string related operations, like copying a string, looking for a character in a string, etc...., and finally, the Destination Index register (DI) is used as the destination in such stream/string operations.</p>
+
+<h2> Register Extensions/ segments </h2>
+<p> In 32 bit protected mode, which i will not get into in this guide, these registers are extended, and given the names: EAX, EBX, ECX, EDX, ESP, EBP, ESI, and EDI, and in 64 bit mode, they are extended yet again, with an R at the beginning instead of an E: RAX, RCX .... In all modes, you can access a smaller version of the register, just a segment of it. In 16 bit real mode, there are only 3 options you can use when accessing a register: The whole register, the first half, or the second half. To access the whole register, use the base names: AX, CX, BX, etc.. the first half is written as AL, BL, CL ... the second half as AH, BH, CH etc... </p>
+
+<h2> Arguments for operations: </h2>
+<p> Operations always have arguments in them, which can come in three forms: Memory pointers, Registers and Constants. In the format of assembly we are using (intel) Constants are simply writen as a number, such as 100, or 200, or 0x200 which means 512 in decimal (0x1234asdf is the format for writing hex), 0o132 to show octal numbers and 0b10100101 for binary numbers. Memory addresses are writen as [0x100] or as [AX] to show that the memory being written/read to/from is at the location pointed to by the register AX. And registers are simply writen as AX, BL, CH etc... There are some restrictions to operations, such as "mov" (the move operation) that cannot copy data into a constant, and cannot copy data from memory from memory. </p>
+
+<h2> Bios </h2>
+<p> When the bootloader program is first loaded in, it is done so by bios, which looks for a sector of 512 bytes which ends with 0xAA55 at the start of every disk and loads it if it is valid. Which then is able to access the bios functions using the "int" instruction.</p>
+
+<nav class="crumbs">
+	<ol>
+		<li class="crumb"><a href="site.html">Overview</a></li>
+		<li class="crumb"><a>Background Info</a></li>
+		<li class="crumb"><a href="code.html">Code</a></li>
+		<li class="crumb"><a href="beyond">Beyond A Bootloader</a></li>
+	</ol>
+</nav>
+</body>
+</html>
