@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Code</h1>
+<p> Here is the code for the bootloader (bl.asm), I will explain as i go: </p>
+<code>
+	[BITS 16]
+</code>
+<p> this is to tell NASM that we are in 16 bit real mode, so that when we compile, it won't accidentally make machine code that the cpu can't run. </p>
+<code>
+	[ORG 0x7c00]
+</code>
+<p> Whenever a program is loaded by bios, it is always positioned at the address 0x7c00, so we should make NASM aware of that</p>
+<code>
+	mov si, msg</br>
+	mov ah, 0x0e
+</code>
+<p> Here are our first two instructions, the first of which tells the cpu to move into the register SI the location of our message (which we will write later)</p>
+<code>
+	.loop:</br>
+		lodsb</br>
+		cmp al, 0</br>
+		je.end</br>
+		int 0x10</br>
+		jmp.loop
+</code>
+<p> Here i make a loop marker, to use at the end. the "lodsb" instruction takes a byte from the memory at the location SI (which we set to be the start of the string) and puts it into the AL register, and then increments the SI register. To give an understanding of what happens after this instruction is run: before it is run, the value of SI is the location of our message, whatever it may be, and the value of AL is 0x00 or some garbage since it hasn't been set yet. After the instruction is run, the value of SI will be the location of our message+1 (meaning it points to the second letter in the message), and AL will be equal to the first letter from the message that was loaded. After that, we check if the character is equal to zero, if it is, the loop will be exited, otherwise, the instruction "int 0x10" will be run and then the loop will restart again. int 0x10 will print the character stored in the AL register. Putting that all together, this code will write characters from our string over and over again until it reaches a character with the value of 0.</p>
+<code>
+	.end:</br>
+		jmp $</br>
+	msg db "hello world from bootloader!!!", 0x0</br>
+	</br>
+	times 510 - ($-$$) db 0</br>
+	dw 0xaa55
+</code>
+
+<p>The final part of the code is simply an infinite loop "jmp $" so that the cpu is tasked with something and won't execute garbage code, followed by our string, and after that code which will fill the file entirely with zeroes, except for the last two bytes that have to be 0xaa and 0x55 respectively to be recognized. </p>
+<nav class="crumbs">
+	<ol>
+		<li class="crumb"><a href="site.html">Overview</a></li>
+		<li class="crumb"><a href="background.html">Background Info</a></li>
+		<li class="crumb"><a>Code</a></li>
+		<li class="crumb"><a href="beyond.html">Beyond A Bootloader</a></li>
+	</ol>
+</nav>
+</body>
+</html>
