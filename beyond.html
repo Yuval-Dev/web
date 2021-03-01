@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Beyond The BootLoader</h1>
+<p> After making your bootloader, you will need to compile it with NASM like this:
+<code>
+nasm.exe -f bin -o <your filename>.bin <your filename>.asm
+</code>
+and then run it with qemu like this:
+<code>
+qemu-system-x86_64.exe -fda <your filename>.bin
+</code>
+which should then greet you with the message you put in your code!
+</br>
+After making this simple bootloader, the next step would be to enter 32 bit mode and run the later stages of your kernel/OS/program. <a href="osdev.org">Osdev</a> is a very good wiki website for learning more about this as well as reference for making such things.
+</p>
+<nav class="crumbs">
+	<ol>
+		<li class="crumb"><a href="site.html">Overview</a></li>
+		<li class="crumb"><a href="background.html">Background Info</a></li>
+		<li class="crumb"><a href="code.html">Code</a></li>
+		<li class="crumb"><a>Beyond A Bootloader</a></li>
+	</ol>
+</nav>
+</body>
+</html>
