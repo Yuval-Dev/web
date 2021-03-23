@@ -1,0 +1,66 @@
+
+<canvas style="border:1px solid #000000;" id="cvs"></canvas>
+
+
+<script>
+
+function addC(a,b) {
+return {a: a.a+b.a, b: a.b+b.b};
+}
+function sqrC(a){
+return {a: a.a*a.a-a.b*a.b, b: 2*a.b*a.a};
+}
+function setPixel(imageData, x, y, r, g, b, a) {
+//console.log( x, y, r, g, b, a);
+    var index = 4 * (x + y * imageData.width);
+    imageData.data[index+0] = r;
+    imageData.data[index+1] = g;
+    imageData.data[index+2] = b;
+    imageData.data[index+3] = a;
+}
+var canvas = document.getElementById('cvs');
+  var ctx = canvas.getContext('2d');
+  var canvasWidth = canvas.width;
+  var canvasHeight = canvas.height;
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+  var id = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+  var pixels = id.data;
+var point = {x: 0, y: 0};
+var zoom = 0.25;
+
+  function update() {
+for(var i = 1; i < canvasWidth; i++) {
+for(var j = 1; j < canvasHeight; j++) {
+var counter = 0;
+var number = {a: (i/(canvasWidth)-0.5)/zoom+point.x, b: (j/(canvasHeight)-0.5)/zoom+point.y};
+//console.log(number.b);
+var tmp = {a:0,b:0};
+for(counter=0; counter < 255; counter++) {
+tmp = addC(sqrC(tmp),number);
+if(Math.sqrt(tmp.a*tmp.a+tmp.b+tmp.b)>2) {
+break;
+}
+}
+setPixel(id, i, j, 0, 255-counter, counter, 256);
+}
+}
+ctx.putImageData(id, 0, 0);
+}
+update();
+canvas.onmousewheel = function (event){
+    var mousex = event.clientX - canvas.offsetLeft;
+    var mousey = event.clientY - canvas.offsetTop;
+    var wheel = event.wheelDelta/120;//n or -n
+var mouseX=mousex/canvasWidth-0.5;
+var mouseY=mousey/canvasHeight-0.5;
+    var zoom1 = 1 + wheel/2;
+	point.x=mouseX*2*zoom+point.x;
+	point.y=mouseY*2*zoom+point.y;
+	if(zoom1>0){
+	zoom *= zoom1;
+	} else {
+	zoom /= 1/(-zoom1);
+	}
+	update();
+}
+</script>
