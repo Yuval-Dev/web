@@ -1,48 +1,167 @@
-nav {
-    border-bottom: 1px solid black;
+.switch-toggle {
+   float: left;
+   background: #142729;
+   height: 100px; 
+   display: inline-block;
+   width: 498px;
+   border: solid black 7px;
 }
-
-.crumbs ol {
-    list-style-type: none;
-    padding-left: 0;
+.switch-toggle input {
+  position: absolute;
+  background: #242729;
+  opacity: 0;
+  float:center;
+  text-align: center;
 }
-
-.crumb {
-    display: inline-block;
+.dif_select_div .statsfornerds {
+	display: inline-block;
 }
-
-.crumb a::after {
-    display: inline-block;
-    color: #000;
-    content: '>';
-    font-size: 80%;
-    font-weight: bold;
-    padding: 0 3px;
+.statsfornerds {
+	float: right;
+	width: 332px
 }
-h1 {
-	font-family: "Times New Roman", Times, serif;
-	background-color: green;
-	color: white;
+.difficulty_div {
+	display: inline-block;
 }
-h2 {
-	font-family: Arial, sans-serif;
-	background-color: purple;
-	color: white;
+.switch-toggle label ~ label {
+  border-left: solid black 3px;
 }
-p {
-	font-family: "Times New Roman", Times, serif;
-	background-color: red;
-	color: white;
+.switch-toggle input + label {
+  background: #242729;
+  border-bottom: 5px solid black;
+  padding: 7px;
+  width: 150px;
+  float:left;
+  color: #fff;
+  cursor: pointer;
+  float:center;
+  text-align: center;
 }
-code {
-	background-color: blue;
-	color: white;
+label {
+	font-size: 26px;
 }
-a {
-	font-family: Arial, sans-serif;
-	background-color: grey;
-	color: white;
+.switch-toggle input:checked + label {
+  background: green;
 }
 body {
-	background-color: black;
+	caret-color: transparent;
+	background-color: aqua;
+}
+.dif_desc_p {
+	display: none;
+	color: green;
+	word-wrap: break-word;
+	padding: 7px;
+	float:center;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+}
+.sfn_desc_p {
+	color: green;
+	word-wrap: break-word;
+	padding: 7px;
+	float:center;
+	display:block;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+}
+v5 {
+	text-align: center;
+	display: block;
+	font-weight: bold;
+	font-size: 28px;
+}
+b5 {
+	text-align: center;
+	display: block;
+	font-size: 19px;
+}
+.sfn_a {
+	text-align: center;
+	display: block;
+	font-size: 50px;
+	font-weight: bold;
+}
+.sfn {
+	border: solid black 10px;
+	display: inline-block;
+	width: 400px;
+	height: 972px;
+	position: absolute;
+	margin-left: 20px;
+}
+#easy:checked ~ #easy-description {
+	display: block;
+}
+#medium:checked ~ #medium-description {
+	display: block;
+}
+#hard:checked ~ #hard-description {
+	display: block;
+}
+.valid{
+    cursor: pointer;
+}
+b1 {
+	font-weight: bold;
+	font-size: 29px;
+	font-family: "Times New Roman", Times, serif;
+}
+b2 {
+	font-weight: bold;
+	font-style: italic;
+	font-size: 15px;
+	font-family: "Times New Roman", Times, serif;
+}
+b3 {
+	font-weight: bold;
+	font-family: "Times New Roman", Times, serif;
+}
+b4 {
+	font-size: 15px;
+	font-family: "Times New Roman", Times, serif;
+}
+.game-container {
+	display: inline-block;
+}
+button {     
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;     
+	width: 100px;
+	height: 100px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	height:100%;
+	display: block;
+}
+table {
+	border: 4px solid black;
+	background-color: #755029;
+}
+tr {
+	margin: 0;
+	padding: 0;
+	border-collapse:collapse;
+	cellspacing: 0;
+}
+th {
+	width: 100px;
+	height: 100px;
+	border: 2px solid black;
+	margin: 0;
+	padding: 0;
+	height:100%;
+	cellspacing: 0;
+	border-collapse:collapse;
+}
+img {
+	width: 100px;
+	display: block;
+	height: 100px;
+	margin: 0;
+	padding: 0;
+	height:100%;
 }
